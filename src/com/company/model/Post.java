@@ -1,6 +1,8 @@
 package com.company.model;
 
 import com.company.model.gametype.GameType;
+import com.company.model.gametype.types.Action;
+import com.company.model.gametype.types.Sport;
 
 import java.util.ArrayList;
 
@@ -18,6 +20,17 @@ public class Post {
         this.typeDisplay = typeDisplay;
         this.available = available;
         this.games = games;
+
+    }
+
+    public Post postOne(){
+        ArrayList<GameType> games = new ArrayList<>();
+        games.add(new Sport("FIFA2021"));
+        games.add(new Sport("PES2021"));
+        games.add(new Action("GTA5"));
+        games.add(new Action("WWA"));
+
+        return new Post(1,"PS4","Samsung",games ,false);
 
     }
 
