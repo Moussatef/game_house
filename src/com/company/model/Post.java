@@ -1,16 +1,18 @@
 package com.company.model;
 
-import java.util.Arrays;
+import com.company.model.gametype.GameType;
+
+import java.util.ArrayList;
 
 public class Post {
     private int numberPost;
     private String typeEng;
     private String typeDisplay;
     private static boolean available = true;
-    private String[] games ;
+    private ArrayList<GameType>  games ;
 
     public Post(){}
-    public Post(int numberPost,String typeEng,String typeDisplay,String[] games,boolean available){
+    public Post(int numberPost,String typeEng,String typeDisplay,ArrayList<GameType> games,boolean available){
         this.numberPost = numberPost;
         this.typeEng = typeEng;
         this.typeDisplay = typeDisplay;
@@ -19,8 +21,9 @@ public class Post {
 
     }
 
-    public static boolean isAvailable() {
-        return available;
+    public static String isAvailable() {
+        String isAvailable = available ? "Available" : "Not available";
+        return isAvailable ;
     }
 
     public static void setAvailable(boolean available) {
@@ -51,11 +54,14 @@ public class Post {
         this.typeDisplay = typeDisplay;
     }
 
-    public String getGames() {
-        return Arrays.toString(games);
+    public ArrayList<GameType> getGames() {
+        ArrayList game = new ArrayList<>();
+        for(GameType gameN : this.games)
+            game.add(gameN.getClass().getSimpleName() +" : "+ gameN.getName());
+        return game;
     }
 
-    public void setGames(String[] games) {
+    public void setGames(ArrayList<GameType> games) {
         this.games = games;
     }
 }
