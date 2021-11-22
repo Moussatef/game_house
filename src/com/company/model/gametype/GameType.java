@@ -1,5 +1,7 @@
 package com.company.model.gametype;
 
+import java.util.Locale;
+
 public class GameType {
     private String name;
 
@@ -7,7 +9,7 @@ public class GameType {
         this.name = name;
     }
     public String getName() {
-        return name;
+        return name.toUpperCase();
     }
 
     public void setName(String name) {

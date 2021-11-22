@@ -8,7 +8,6 @@ public enum PackGame {
     FAVE_HOURS(300, 18),
     ALL_JOURNEY(999, 65);
 
-
     private final Integer duration;
     private final Integer price;
 
@@ -16,8 +15,6 @@ public enum PackGame {
         this.duration = duration;
         this.price = price;
     }
-
-
     public Integer getDuration() {
         return duration;
     }

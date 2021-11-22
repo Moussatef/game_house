@@ -9,16 +9,20 @@ import javax.lang.model.type.NullType;
 
 import static com.company.helpers.Helper.print;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 
 public class PlayerController {
     public static Scanner scanner = new Scanner(System.in);
     public  ArrayList<GameType>  gameTypeArrayList = new ArrayList<>();
     public  ArrayList<Post> postArrayList = new ArrayList<>();
+    public ArrayList<Post> postFind = new ArrayList<>();
 
 
     public void fillListPost(){
@@ -76,7 +80,7 @@ public class PlayerController {
 
 
     }
-    public Post searchPost(String game){
+    public void searchPost(String game){
 
         ArrayList<Post> post = new ArrayList<>();
         ArrayList<GameType> games = new ArrayList<>();
@@ -89,17 +93,33 @@ public class PlayerController {
                         print("\t\t\t\t\t********************************** POST AVAILABLE NOW **********************************");
                         print("\t\t\t\t\tPost Number : " + posts.getNumberPost() + "\n\t\t\t\t\tGames : " + posts.getGamesType() + " \n\t\t\t\t\tDisplay type : " + posts.getTypeDisplay() + " \n\t\t\t\t\tPlay type : " + posts.getTypeEng() + "\n\t\t\t\t\t" + posts.isAvailable());
                         print("\t\t\t\t\t**********************************************************************************");
-                        return posts;
+                        postFind.add(posts);
                     } else
                         print("Post Number : " + posts.getNumberPost()+" is not available for now");
                 }
         }
 
-    return null;
+
 
     }
 
+    public boolean checkPost(int nb_post){
+
+        for (Post p : postFind)
+            if (p.getNumberPost() == nb_post){
+                postFind.clear();
+                postFind.add(p);
+                return  true;
+            }
+
+        return false;
+    }
+
     public  void addplayer(){
+
+        String tmt = scanner.nextLine();
+
+
 
         fillListGame();
         fillListPost();
@@ -123,7 +143,41 @@ public class PlayerController {
                 print("This game is not exist in list game !!! try again ");
         }while (!searchGame(game.toUpperCase()));
 
-        searchPost(game);
+
+        searchPost(game.toUpperCase());
+        print(" Number of post available is : "+postFind.size());
+        int numberPost ;
+        try {
+            while (true) {
+                System.out.print("Chose number post of this post available : ");
+                numberPost = scanner.nextInt();
+                if (checkPost(numberPost)) {
+                    print(postFind.get(0).getNumberPost());
+                    break;
+                }
+                else {
+                    print("This Post is not in chose !!!");
+                    continue;
+                }
+            }
+
+
+        }catch(Exception e){
+            print(e.getMessage());
+        }
+
+
+
+
+
+
+        /*
+        for (Post p1 : postFind)
+            print(p1.getGamesType());
+
+         */
+
+
 
 
     }
