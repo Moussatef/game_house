@@ -22,7 +22,7 @@ public class MenuHelper {
             try{
                 switch (chose){
                     case "1" :
-                        print("Add Player");
+                        print("************************* Games List *************************");
                         PlayerController player = new PlayerController();
                         player.addplayer();
 
