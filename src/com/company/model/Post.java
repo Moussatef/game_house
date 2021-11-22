@@ -10,7 +10,7 @@ public class Post {
     private int numberPost;
     private String typeEng;
     private String typeDisplay;
-    private static boolean available = true;
+    private boolean available ;
     private ArrayList<GameType>  games ;
 
     public Post(){}
@@ -34,13 +34,17 @@ public class Post {
 
     }
 
-    public static String isAvailable() {
-        String isAvailable = available ? "Available" : "Not available";
+    public  String isAvailable() {
+        String isAvailable = this.available ? "Available" : "Not available";
         return isAvailable ;
     }
+    public  boolean available() {
 
-    public static void setAvailable(boolean available) {
-        Post.available = available;
+        return this.available ;
+    }
+
+    public  void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public int getNumberPost() {
@@ -67,11 +71,17 @@ public class Post {
         this.typeDisplay = typeDisplay;
     }
 
-    public ArrayList<GameType> getGames() {
+    public ArrayList<GameType> getGamesType() {
+
         ArrayList game = new ArrayList<>();
+
         for(GameType gameN : this.games)
             game.add(gameN.getClass().getSimpleName() +" : "+ gameN.getName());
+
         return game;
+    }
+    public ArrayList<GameType> getGames() {
+        return this.games;
     }
 
     public void setGames(ArrayList<GameType> games) {

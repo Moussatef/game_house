@@ -4,9 +4,13 @@ import com.company.model.Post;
 import com.company.model.gametype.GameType;
 import com.company.model.gametype.types.Action;
 import com.company.model.gametype.types.Sport;
+
+import javax.lang.model.type.NullType;
+
 import static com.company.helpers.Helper.print;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -14,8 +18,19 @@ import java.util.Scanner;
 public class PlayerController {
     public static Scanner scanner = new Scanner(System.in);
     public  ArrayList<GameType>  gameTypeArrayList = new ArrayList<>();
+    public  ArrayList<Post> postArrayList = new ArrayList<>();
 
 
+    public void fillListPost(){
+        postArrayList.add(new Post(1,"PlayStation5","Samsung",arrayListGame() ,false));
+        postArrayList.add(new Post(2,"PlayStation5","Asus",arrayListGame() ,true));
+        postArrayList.add(new Post(3,"Xbox","HP",arrayListGame() ,true));
+        postArrayList.add(new Post(4,"Xbox","Asus",arrayListGame() ,true));
+        postArrayList.add(new Post(5,"Xbox","Asus",arrayListGame() ,false));
+        postArrayList.add(new Post(6,"Nintendo switch","Dell",arrayListGame() ,true));
+        postArrayList.add(new Post(7,"Nintendo switch","Dell",arrayListGame() ,false));
+
+    }
     public void fillListGame(){
         gameTypeArrayList.add(new Sport("FIFA2021"));
         gameTypeArrayList.add(new Sport("PES2021"));
@@ -29,7 +44,7 @@ public class PlayerController {
         gameTypeArrayList.add(new Action("CALL OF DUET"));
         gameTypeArrayList.add(new Action("Battlefield 2042"));
         gameTypeArrayList.add(new Action("The Demon World"));
-        gameTypeArrayList.add(new Action(" Back 4"));
+        gameTypeArrayList.add(new Action("Back 4"));
         gameTypeArrayList.add(new Action("ALL-STAR BRAWL"));
         gameTypeArrayList.add(new Action("World War 2"));
         gameTypeArrayList.add(new Action("Bonfire Peaks"));
@@ -50,36 +65,65 @@ public class PlayerController {
         return  gameReturn;
     }
 
-    public boolean
+    public boolean searchGame(String game){
+
+        for(GameType games : gameTypeArrayList)
+            if(game.equals(games.getName().toUpperCase()))
+                return true;
+
+
+        return false;
+
+
+    }
+    public Post searchPost(String game){
+
+        ArrayList<Post> post = new ArrayList<>();
+        ArrayList<GameType> games = new ArrayList<>();
+
+        for (Post posts : postArrayList) {
+            games = posts.getGames();
+            for (GameType g : games)
+                if (game.equals(g.getName().toUpperCase())) {
+                    if (posts.available()) {
+                        print("\t\t\t\t\t********************************** POST AVAILABLE NOW **********************************");
+                        print("\t\t\t\t\tPost Number : " + posts.getNumberPost() + "\n\t\t\t\t\tGames : " + posts.getGamesType() + " \n\t\t\t\t\tDisplay type : " + posts.getTypeDisplay() + " \n\t\t\t\t\tPlay type : " + posts.getTypeEng() + "\n\t\t\t\t\t" + posts.isAvailable());
+                        print("\t\t\t\t\t**********************************************************************************");
+                        return posts;
+                    } else
+                        print("Post Number : " + posts.getNumberPost()+" is not available for now");
+                }
+        }
+
+    return null;
+
+    }
 
     public  void addplayer(){
-        ArrayList<Post> postArrayList = new ArrayList<>();
+
         fillListGame();
+        fillListPost();
 
-
-        postArrayList.add(new Post(1,"PlayStation5","Samsung",arrayListGame() ,false));
-        postArrayList.add(new Post(2,"PlayStation5","Asus",arrayListGame() ,true));
-        postArrayList.add(new Post(3,"Xbox","HP",arrayListGame() ,true));
-        postArrayList.add(new Post(4,"Xbox","Asus",arrayListGame() ,true));
-        postArrayList.add(new Post(5,"Xbox","Asus",arrayListGame() ,false));
-        postArrayList.add(new Post(6,"Nintendo switch","Dell",arrayListGame() ,true));
-        postArrayList.add(new Post(7,"Nintendo switch","Dell",arrayListGame() ,false));
-
- int cmp = 0;
+        int cmp = 0;
         for (Post p1 : postArrayList) {
 
             print("\t\t\t\t\t********************************** POST NUMBER "+ (cmp+1) + "**********************************");
-            print("\t\t\t\t\tPost Number : " + p1.getNumberPost() + "\n\t\t\t\t\tGames : " + p1.getGames() + " \n\t\t\t\t\tDisplay type : " + p1.getTypeDisplay() + " \n\t\t\t\t\tPlay type : " + p1.getTypeEng() + "\n\t\t\t\t\t" + p1.isAvailable());
+            print("\t\t\t\t\tPost Number : " + p1.getNumberPost() + "\n\t\t\t\t\tGames : " + p1.getGamesType() + " \n\t\t\t\t\tDisplay type : " + p1.getTypeDisplay() + " \n\t\t\t\t\tPlay type : " + p1.getTypeEng() + "\n\t\t\t\t\t" + p1.isAvailable());
             print("\t\t\t\t\t**********************************************************************************");
             cmp++;
         }
         for (GameType game : gameTypeArrayList)
            print(game.getName().toUpperCase());
-        System.out.print("chose a game : ");
-        String game = scanner.nextLine();
 
+        String game ;
+        do{
+            System.out.print("chose a game : ");
+            game = scanner.nextLine();
+            if (!searchGame(game.toUpperCase()))
+                print("This game is not exist in list game !!! try again ");
+        }while (!searchGame(game.toUpperCase()));
 
-
+        searchPost(game);
 
 
     }
