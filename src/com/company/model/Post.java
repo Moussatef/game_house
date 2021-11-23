@@ -23,17 +23,6 @@ public class Post {
 
     }
 
-    public Post postOne(){
-        ArrayList<GameType> games = new ArrayList<>();
-        games.add(new Sport("FIFA2021"));
-        games.add(new Sport("PES2021"));
-        games.add(new Action("GTA5"));
-        games.add(new Action("WWA"));
-
-        return new Post(1,"PS4","Samsung",games ,false);
-
-    }
-
     public  String isAvailable() {
         String isAvailable = this.available ? "Available" : "Not available";
         return isAvailable ;

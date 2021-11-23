@@ -168,7 +168,7 @@ public class PlayerController {
                         continue;
                     }
                 }
-                while (true) {
+
                     printl("First Name : ");
                     String name = scanner.next();
 
@@ -212,15 +212,33 @@ public class PlayerController {
                         break;
                     }
 
-                    print("********* Enter start time ********* ");
+                while (true) {
+                        print("********* Enter start time ********* ");
 
-                    String hourP,minP ;
-                    while (true){
-                        System.out.print("Enter HOUR :");
-                         hourP = scanner.next();
-                        System.out.print("Enter Minutes :");
-                         minP = scanner.next();
-                        if (Integer.parseInt(hourP) >= 8 || (Integer.parseInt(hourP) < 12 && Integer.parseInt(minP) <= 30) || Integer.parseInt(hourP) >= 14 || (Integer.parseInt(hourP) > 20 && Integer.parseInt(minP) <= 30)) {
+
+                         System.out.print("Enter HOUR : ");
+                         String hourP = scanner.next();
+                         /*
+                         if (Integer.parseInt(hourP) > 12 || Integer.parseInt(hourP) > 20 ){
+                             print("This time is not available");
+                             continue;
+                         }
+
+                          */
+
+                         System.out.print("Enter Minutes :");
+                        String minP = scanner.next();
+
+                        /* if (Integer.parseInt(minP) > 60 || Integer.parseInt(minP) < 0 )
+                         {
+                             print("This time is not available");
+                             continue;
+                         }
+
+                         */
+
+
+                        if (Integer.parseInt(hourP) >= 8 || Integer.parseInt(hourP) < 12 || Integer.parseInt(hourP) >= 14 || Integer.parseInt(hourP) > 20 ) {
                             int hour = scanner.nextInt();
                             int min = scanner.nextInt();
                             LocalTime time = LocalTime.of(hour, min);
@@ -230,8 +248,7 @@ public class PlayerController {
                             print("This time is not available");
                             continue;
                         }
-                        break;
-                    }
+
 
                     break;
                 }
