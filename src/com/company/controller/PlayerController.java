@@ -119,33 +119,6 @@ public class PlayerController {
 
 
 
-        while (true){
-            print("********* Enter start time ********* ");
-            System.out.print("Enter HOUR :");
-            String hourP = scanner.nextLine();
-            System.out.print("Enter Minutes :");
-            String minP = scanner.nextLine();
-
-
-            if(Integer.parseInt(hourP) >= 8 || (Integer.parseInt(hourP) < 12 && Integer.parseInt(minP) <= 30 ) || Integer.parseInt(hourP) >= 14 || (Integer.parseInt(hourP) > 20 && Integer.parseInt(minP) <= 30 )  ){
-                int hour = scanner.nextInt();
-                int min = scanner.nextInt();
-
-                LocalTime time = LocalTime.of(hour,min);
-                print(time);
-                break;
-            }else{
-                print("This time is not available");
-                continue;
-            }
-
-
-
-
-        }
-
-
-
 
         fillListGame();
         fillListPost();
@@ -174,16 +147,39 @@ public class PlayerController {
         print(" Number of post available is : "+postFind.size());
         int numberPost ;
         try {
-            while (true) {
-                System.out.print("Chose number post of this post available : ");
-                numberPost = scanner.nextInt();
-                if (checkPost(numberPost)) {
-                    print(postFind.get(0).getNumberPost());
-                    break;
+            if(postFind.size() > 0) {
+                while (true) {
+                    System.out.print("Chose number post of this post available : ");
+                    numberPost = scanner.nextInt();
+                    if (checkPost(numberPost)) {
+                        print(postFind.get(0).getNumberPost());
+                        break;
+                    } else {
+                        print("This Post is not in chose !!!");
+                        continue;
+                    }
                 }
-                else {
-                    print("This Post is not in chose !!!");
-                    continue;
+                while (true) {
+
+
+                    print("********* Enter start time ********* ");
+                    System.out.print("Enter HOUR :");
+                    String hourP = scanner.nextLine();
+                    System.out.print("Enter Minutes :");
+                    String minP = scanner.nextLine();
+
+
+                    if (Integer.parseInt(hourP) >= 8 || (Integer.parseInt(hourP) < 12 && Integer.parseInt(minP) <= 30) || Integer.parseInt(hourP) >= 14 || (Integer.parseInt(hourP) > 20 && Integer.parseInt(minP) <= 30)) {
+                        int hour = scanner.nextInt();
+                        int min = scanner.nextInt();
+                        LocalTime time = LocalTime.of(hour, min);
+                        print(time);
+
+                    } else {
+                        print("This time is not available");
+                        continue;
+                    }
+                    break;
                 }
             }
 
@@ -193,17 +189,11 @@ public class PlayerController {
         }
 
 
-
-
-
-
         /*
         for (Post p1 : postFind)
             print(p1.getGamesType());
 
          */
-
-
 
 
     }
