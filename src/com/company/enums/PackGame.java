@@ -26,7 +26,7 @@ public enum PackGame {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append("duration : ").append(duration == 30? duration+"min" : (duration != 999)?duration / 60+"H":"ALL JOURNEY");
+        sb.append("duration : ").append(duration == 30? duration+"MIN" : (duration != 999)?duration / 60+"H":"ALL JOURNEY");
         sb.append(" , price : ").append(price+"DH");
         return sb.toString();
     }

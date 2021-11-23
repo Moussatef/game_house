@@ -137,8 +137,11 @@ public class PlayerController {
         }
 
         //Show List games
-        for (String game : hashListGame)
-           print(game.toUpperCase());
+        print("\t\t\t\t\t************************************** LIST GAME *********************************");
+        for (String game : hashListGame) {
+            print("\t\t\t\t\t**\t\t\t\t\t\t\t\t\t\t " + game.toUpperCase() );
+        }
+        print("\t\t\t\t\t**********************************************************************************");
 
         String game ;
         do{
@@ -172,15 +175,32 @@ public class PlayerController {
                     printl("Last Name : ");
                     String lastname = scanner.next();
 
+                    PackGame packGame;
+
 
                     print("***************************** { Chose Pack Period } *****************************");
-                    print("***************************** { "+ PackGame.HALF_HOUR.toString() +" } *****************************");
-                    print("***************************** { "+ PackGame.HOUR.toString()+" } *****************************");
-                    print("***************************** { "+ PackGame.TWO_HOURS.toString()+" } *****************************");
-                    print("***************************** { "+ PackGame.FAVE_HOURS.toString()+" } *****************************");
-                    print("***************************** { "+ PackGame.ALL_JOURNEY.toString()+" } *****************************");
+                    print("***************************** { 1 - "+ PackGame.HALF_HOUR.toString() +" } *****************************");
+                    print("***************************** { 2 - "+ PackGame.HOUR.toString()+" } *****************************");
+                    print("***************************** { 3 - "+ PackGame.TWO_HOURS.toString()+" } *****************************");
+                    print("***************************** { 4 - "+ PackGame.FAVE_HOURS.toString()+" } *****************************");
+                    print("***************************** { 5 - "+ PackGame.ALL_JOURNEY.toString()+" } *****************************");
 
+                    while (true){
+                        printl("Puck number  : ");
+                        int packNumber = scanner.nextInt();
+                        switch(packNumber){
+                            case 1 : packGame = PackGame.HALF_HOUR;
+                            print(packGame);
+                                break;
 
+                            default:
+                                print("this number not exist in pack game !!!");
+                                continue;
+
+                        }
+
+                        break;
+                    }
 
 
 
@@ -190,9 +210,9 @@ public class PlayerController {
 
                     print("********* Enter start time ********* ");
                     printl("Enter HOUR :");
-                    String hourP = scanner.nextLine();
+                    String hourP = scanner.next();
                     printl("Enter Minutes :");
-                    String minP = scanner.nextLine();
+                    String minP = scanner.next();
 
 
                     if (Integer.parseInt(hourP) >= 8 || (Integer.parseInt(hourP) < 12 && Integer.parseInt(minP) <= 30) || Integer.parseInt(hourP) >= 14 || (Integer.parseInt(hourP) > 20 && Integer.parseInt(minP) <= 30)) {
