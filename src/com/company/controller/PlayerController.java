@@ -117,7 +117,33 @@ public class PlayerController {
 
     public  void addplayer(){
 
-        String tmt = scanner.nextLine();
+
+
+        while (true){
+            print("********* Enter start time ********* ");
+            System.out.print("Enter HOUR :");
+            String hourP = scanner.nextLine();
+            System.out.print("Enter Minutes :");
+            String minP = scanner.nextLine();
+
+
+            if(Integer.parseInt(hourP) >= 8 || (Integer.parseInt(hourP) < 12 && Integer.parseInt(minP) <= 30 ) || Integer.parseInt(hourP) >= 14 || (Integer.parseInt(hourP) > 20 && Integer.parseInt(minP) <= 30 )  ){
+                int hour = scanner.nextInt();
+                int min = scanner.nextInt();
+
+                LocalTime time = LocalTime.of(hour,min);
+                print(time);
+                break;
+            }else{
+                print("This time is not available");
+                continue;
+            }
+
+
+
+
+        }
+
 
 
 
