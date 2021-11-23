@@ -1,5 +1,6 @@
 package com.company.controller;
 
+import com.company.model.Person;
 import com.company.model.Post;
 import com.company.model.gametype.GameType;
 import com.company.model.gametype.types.Action;
@@ -7,14 +8,11 @@ import com.company.model.gametype.types.Sport;
 
 import javax.lang.model.type.NullType;
 
-import static com.company.helpers.Helper.print;
+import static com.company.helpers.Helper.*;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 
@@ -116,13 +114,15 @@ public class PlayerController {
     }
 
     public  void addplayer(){
+        HashSet<String> hashListGame = new HashSet<>();
 
 
 
-
+        //Method Fill List Game
         fillListGame();
+        //Method Fill List Post
         fillListPost();
-
+        //show list post exist
         int cmp = 0;
         for (Post p1 : postArrayList) {
 
@@ -130,13 +130,18 @@ public class PlayerController {
             print("\t\t\t\t\tPost Number : " + p1.getNumberPost() + "\n\t\t\t\t\tGames : " + p1.getGamesType() + " \n\t\t\t\t\tDisplay type : " + p1.getTypeDisplay() + " \n\t\t\t\t\tPlay type : " + p1.getTypeEng() + "\n\t\t\t\t\t" + p1.isAvailable());
             print("\t\t\t\t\t**********************************************************************************");
             cmp++;
+            for (GameType g : p1.getGames()){
+                hashListGame.add(g.getName());
+            }
         }
-        for (GameType game : gameTypeArrayList)
-           print(game.getName().toUpperCase());
+
+        //Show List games
+        for (String game : hashListGame)
+           print(game.toUpperCase());
 
         String game ;
         do{
-            System.out.print("chose a game : ");
+            printl("chose a game : ");
             game = scanner.nextLine();
             if (!searchGame(game.toUpperCase()))
                 print("This game is not exist in list game !!! try again ");
@@ -149,7 +154,7 @@ public class PlayerController {
         try {
             if(postFind.size() > 0) {
                 while (true) {
-                    System.out.print("Chose number post of this post available : ");
+                    printl("Chose number post of this post available : ");
                     numberPost = scanner.nextInt();
                     if (checkPost(numberPost)) {
                         print(postFind.get(0).getNumberPost());
@@ -160,12 +165,22 @@ public class PlayerController {
                     }
                 }
                 while (true) {
+                    printl("First Name : ");
+                    String name = scanner.nextLine();
+                    printl("Last Name : ");
+                    String lastname = scanner.nextLine();
+
+
+
+
+
+
 
 
                     print("********* Enter start time ********* ");
-                    System.out.print("Enter HOUR :");
+                    printl("Enter HOUR :");
                     String hourP = scanner.nextLine();
-                    System.out.print("Enter Minutes :");
+                    printl("Enter Minutes :");
                     String minP = scanner.nextLine();
 
 
