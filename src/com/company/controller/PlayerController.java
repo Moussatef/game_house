@@ -1,5 +1,6 @@
 package com.company.controller;
 
+import com.company.enums.PackGame;
 import com.company.model.Person;
 import com.company.model.Post;
 import com.company.model.gametype.GameType;
@@ -166,9 +167,19 @@ public class PlayerController {
                 }
                 while (true) {
                     printl("First Name : ");
-                    String name = scanner.nextLine();
+                    String name = scanner.next();
+
                     printl("Last Name : ");
-                    String lastname = scanner.nextLine();
+                    String lastname = scanner.next();
+
+
+                    print("***************************** { Chose Pack Period } *****************************");
+                    print("***************************** { "+ PackGame.HALF_HOUR.toString() +" } *****************************");
+                    print("***************************** { "+ PackGame.HOUR.toString()+" } *****************************");
+                    print("***************************** { "+ PackGame.TWO_HOURS.toString()+" } *****************************");
+                    print("***************************** { "+ PackGame.FAVE_HOURS.toString()+" } *****************************");
+                    print("***************************** { "+ PackGame.ALL_JOURNEY.toString()+" } *****************************");
+
 
 
 
