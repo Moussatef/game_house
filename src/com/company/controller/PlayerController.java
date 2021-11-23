@@ -192,11 +192,21 @@ public class PlayerController {
                             case 1 : packGame = PackGame.HALF_HOUR;
                             print(packGame);
                                 break;
-
+                            case 2 : packGame = PackGame.HOUR;
+                                print(packGame);
+                                break;
+                            case 3 : packGame = PackGame.TWO_HOURS;
+                                print(packGame);
+                                break;
+                            case 4 : packGame = PackGame.FAVE_HOURS;
+                                print(packGame);
+                                break;
+                                case 5 : packGame = PackGame.ALL_JOURNEY;
+                                print(packGame);
+                                break;
                             default:
                                 print("this number not exist in pack game !!!");
                                 continue;
-
                         }
 
                         break;
