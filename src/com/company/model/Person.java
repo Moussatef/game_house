@@ -10,10 +10,21 @@ public class Person  {
     private String firstName ;
     private String lastName;
     private String game;
-    private String dateStart;
+    private LocalTime dateStart;
     private Post post;
     private String codeGame;
     private PackGame timePeriod;
+
+    public Person(){}
+    public Person(String firstName,String lastName , String game,LocalTime dateStart,Post post,String codeGame,PackGame timePeriod){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateStart =dateStart;
+        this.game =game;
+        this.post =post;
+        this.timePeriod= timePeriod;
+        this.codeGame = codeGame;
+    }
 
     public String getFirsName() {
         return firstName;
@@ -31,7 +42,7 @@ public class Person  {
         this.lastName = lastName;
     }
 
-    public String getDateStart() {
+    public LocalTime getDateStart() {
         return dateStart;
     }
 
@@ -39,7 +50,7 @@ public class Person  {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm");
 
         if (dateStart.getHour() >= 8 && dateStart.getHour() < 12 && dateStart.getHour() >= 14 && dateStart.getHour() < 20) {
-            this.dateStart = dtf.format(dateStart);
+            //this.dateStart = dtf.format(dateStart);
 
             return true;
         }else{
